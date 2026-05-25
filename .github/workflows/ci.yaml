@@ -15,25 +15,41 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 10
-
     strategy:
       matrix:
         node-version: [20.x]
+
+    services:
+      postgres:
+        image: postgres:16
+
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: forumapi_test
+
+        ports:
+          - 5432:5432
+
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
     env:
       NODE_ENV: test
       CI: true
 
       # HTTP SERVER
-      HOST: 0.0.0.0
+      HOST: localhost
       PORT: 3000
 
-      # POSTGRES
-      PGHOST: forum-api.c7kkoiasod8b.ap-southeast-2.rds.amazonaws.com
+      # DATABASE
+      PGHOST: localhost
       PGPORT: 5432
       PGUSER: postgres
-      PGPASSWORD: supersecret
+      PGPASSWORD: postgres
       PGDATABASE: forumapi_test
 
       # TOKEN
@@ -49,12 +65,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run database migration
+      - name: Run migrations
         run: npm run migrate up
 
       - name: Run tests
