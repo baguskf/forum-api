@@ -30,7 +30,7 @@ const createServer = async (container) => {
         message: translatedError.message,
       });
     }
-
+    //trigger
     // penanganan server error sesuai kebutuhan
     return res.status(500).json({
       status: 'error',
