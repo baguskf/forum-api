@@ -35,8 +35,9 @@ const createServer = async (container) => {
         message: translatedError.message,
       });
     }
-
-    // penanganan server error sesuai kebutuhan
+    //trigger
+    // penanganan 
+suai kebutuhan
     return res.status(500).json({
       status: 'error',
       message: 'terjadi kegagalan pada server kami',
@@ -55,4 +56,4 @@ const createServer = async (container) => {
 };
 
 export default createServer;
-//tringger ci 1
+//tringger ci 2

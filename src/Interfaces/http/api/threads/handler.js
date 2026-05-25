@@ -1,4 +1,4 @@
-/* eslint-disable indent */
+
 import AddThreadUseCase from '../../../../Applications/use_case/AddThreadUseCase.js';
 import GetThreadDetailUseCase from '../../../../Applications/use_case/GetThreadDetailUseCase.js';
 
