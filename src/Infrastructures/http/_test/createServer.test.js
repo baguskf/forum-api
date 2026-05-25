@@ -1,3 +1,4 @@
+/* eslint-disable no-trailing-spaces */
 import request from 'supertest';
 import pool from '../../database/postgres/pool.js';
 import UsersTableTestHelper from '../../../../tests/UsersTableTestHelper.js';
@@ -25,6 +26,20 @@ describe('HTTP server', () => {
 
     // Assert
     expect(response.status).toEqual(404);
+  });
+
+  describe('when GET /', () => {
+    it('should return 200 and hello world', async () => {
+      // Arrange
+      const app = await createServer({});
+ 
+      // Action
+      const response = await request(app).get('/');
+ 
+      // Assert
+      expect(response.status).toEqual(200);
+      expect(response.body.data).toEqual('Hello world!');
+    });
   });
 
   describe('when POST /users', () => {
