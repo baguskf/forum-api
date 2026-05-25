@@ -1,3 +1,4 @@
+/* eslint-disable no-trailing-spaces */
 import express from 'express';
 import ClientError from '../../Commons/exceptions/ClientError.js';
 import DomainErrorTranslator from '../../Commons/exceptions/DomainErrorTranslator.js';
@@ -16,6 +17,10 @@ const createServer = async (container) => {
   app.use('/authentications', authentications(container));
   app.use('/threads', threads(container));
   app.use('/threads', comments(container));
+
+  app.get('/', (req, res) => {
+    res.status(200).json({ data: 'Hello world!' });
+  });
 
   // Global error handler
   app.use((error, req, res, next) => {
