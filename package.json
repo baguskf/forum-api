@@ -24,6 +24,7 @@
     "instances-container": "^2.0.6",
     "jsonwebtoken": "^9.0.2",
     "nanoid": "^5.0.9",
+    "node-pg-migrate": "^8.0.4",
     "pg": "^8.16.3"
   },
   "devDependencies": {
@@ -34,7 +35,6 @@
     "eslint": "^9.39.4",
     "eslint-config-dicodingacademy": "^0.9.5",
     "eslint-config-prettier": "^10.1.8",
-    "node-pg-migrate": "^8.0.4",
     "nodemon": "^3.1.9",
     "prettier": "^3.8.3",
     "supertest": "^7.1.4",
