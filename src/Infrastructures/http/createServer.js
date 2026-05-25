@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-trailing-spaces */
 import express from 'express';
 import ClientError from '../../Commons/exceptions/ClientError.js';

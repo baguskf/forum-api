@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { describe, it, expect, vi } from 'vitest';
 import GetThreadDetailUseCase from '../GetThreadDetailUseCase.js';
 import NotFoundError from '../../../Commons/exceptions/NotFoundError.js';

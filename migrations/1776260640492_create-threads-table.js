@@ -19,6 +19,7 @@ export const up = (pgm) => {
       references: '"users"',
       onDelete: 'cascade',
     },
+    // eslint-disable-next-line camelcase
     created_at: {
       type: 'timestamp',
       notNull: true,
