@@ -4,7 +4,7 @@ import NotFoundError from '../../../Commons/exceptions/NotFoundError.js';
 import AuthorizationError from '../../../Commons/exceptions/AuthorizationError.js';
 
 describe('DeleteCommentUseCase', () => {
-  
+
   const makeMocks = () => ({
     mockThreadRepository: {
       verifyThreadExists: vi.fn().mockResolvedValue(undefined),
@@ -22,7 +22,7 @@ describe('DeleteCommentUseCase', () => {
     owner: 'user-123',
   };
 
-  
+
   it('should orchestrate delete comment correctly on success', async () => {
     const { mockThreadRepository, mockCommentRepository } = makeMocks();
 
@@ -46,7 +46,7 @@ describe('DeleteCommentUseCase', () => {
       .toHaveBeenCalledWith('comment-123');
   });
 
-  
+
   it('should call repository methods in the correct order', async () => {
     const callOrder = [];
     const { mockThreadRepository, mockCommentRepository } = makeMocks();
@@ -79,7 +79,7 @@ describe('DeleteCommentUseCase', () => {
     ]);
   });
 
-  
+
   it('should throw NotFoundError when threadId is not found', async () => {
     const { mockThreadRepository, mockCommentRepository } = makeMocks();
 
@@ -94,13 +94,13 @@ describe('DeleteCommentUseCase', () => {
 
     await expect(useCase.execute(useCasePayload)).rejects.toThrow(NotFoundError);
 
-    
+
     expect(mockCommentRepository.checkCommentAvailability).not.toHaveBeenCalled();
     expect(mockCommentRepository.verifyCommentOwner).not.toHaveBeenCalled();
     expect(mockCommentRepository.softDeleteComment).not.toHaveBeenCalled();
   });
 
-  
+
   it('should throw NotFoundError when commentId is not found', async () => {
     const { mockThreadRepository, mockCommentRepository } = makeMocks();
 
@@ -116,12 +116,12 @@ describe('DeleteCommentUseCase', () => {
     await expect(useCase.execute(useCasePayload)).rejects.toThrow(NotFoundError);
 
     expect(mockThreadRepository.verifyThreadExists).toHaveBeenCalledWith('thread-123');
-    
+
     expect(mockCommentRepository.verifyCommentOwner).not.toHaveBeenCalled();
     expect(mockCommentRepository.softDeleteComment).not.toHaveBeenCalled();
   });
 
-  
+
   it('should throw AuthorizationError when user is not the comment owner', async () => {
     const { mockThreadRepository, mockCommentRepository } = makeMocks();
 
@@ -138,7 +138,7 @@ describe('DeleteCommentUseCase', () => {
 
     expect(mockThreadRepository.verifyThreadExists).toHaveBeenCalledWith('thread-123');
     expect(mockCommentRepository.checkCommentAvailability).toHaveBeenCalledWith('comment-123');
-    
+
     expect(mockCommentRepository.softDeleteComment).not.toHaveBeenCalled();
   });
 });

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-trailing-spaces */
 import express from 'express';
 import ClientError from '../../Commons/exceptions/ClientError.js';
 import DomainErrorTranslator from '../../Commons/exceptions/DomainErrorTranslator.js';
@@ -17,6 +19,10 @@ const createServer = async (container) => {
   app.use('/threads', threads(container));
   app.use('/threads', comments(container));
 
+  app.get('/', (req, res) => {
+    res.status(200).json({ data: 'Hello world!' });
+  });
+
   // Global error handler
   app.use((error, req, res, next) => {
     // bila response tersebut error, tangani sesuai kebutuhan
@@ -30,8 +36,9 @@ const createServer = async (container) => {
         message: translatedError.message,
       });
     }
+    //trigger
+    // penanganan 
 
-    // penanganan server error sesuai kebutuhan
     return res.status(500).json({
       status: 'error',
       message: 'terjadi kegagalan pada server kami',
@@ -50,3 +57,4 @@ const createServer = async (container) => {
 };
 
 export default createServer;
+//tringger ci 2
