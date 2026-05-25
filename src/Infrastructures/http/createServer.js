@@ -37,7 +37,7 @@ const createServer = async (container) => {
     }
     //trigger
     // penanganan 
-suai kebutuhan
+
     return res.status(500).json({
       status: 'error',
       message: 'terjadi kegagalan pada server kami',
